@@ -1,5 +1,5 @@
 {% set name = "code-server" %}
-{% set version = "3.0.0" %}
+{% set version = "3.0.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   - url: https://github.com/cdr/{{ name }}/archive/{{ version }}.tar.gz
-    sha256: b94a8baec85ca9a5ce8dd0e9add1a3b3ed448b941084301c0afab48c0fcf6ba0
+    sha256: a5a5601c6e6e42f984c7dbb031e51c6be4bcbce54926bb41f22ef1ad8f522051
   - url: https://github.com/microsoft/vscode/archive/1.42.0.tar.gz
     sha256: b2d1cc61127483590fc47a0f8336605da0bbe92b3011024c77b2c15b13a23c8e
     folder: lib/vscode
@@ -22,11 +22,15 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - python 2.7.*
-    - nodejs 12.*
+    - nodejs 12.14.*
     - yarn
   host:
+    - nbin 1.2.7.*
+    - libxkbfile  # [linux]
+    - libsecret  # [linux]
+    - xorg-libx11  # [linux]
   run:
-    - nodejs >=10,<13
+    - nodejs 12.14.*
   run_constrained:  # [osx]
     - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx]
 
